@@ -60,6 +60,10 @@ init(){
 	while IFS='' read -r -d '' item; do
 		# It is possible that `item` is a directory with .bash prefix, avoid them
 		if [ -f "${item}" ]; then
+			printf --\
+				"%s: %s\n"\
+				"${RUNTIME_EXECUTABLE_NAME}"\
+				"Checking ${item}..."
 			shellcheck\
 				--shell=bash\
 				"${item}"
