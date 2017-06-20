@@ -3,6 +3,10 @@ This is a program that checks all existing GNU Bash scripts for errors and poten
 
 <https://github.com/Lin-Buo-Ren/GNU-Bash-Automatic-Checking-Program-for-Git-Projects>
 
+## 特色<br>Features
+* Only scripts in project will be checked, not scripts in submodules, that's their problem
+* Directory named with \*.bash will be omitted
+
 ## 原作者<br>Original Author
 林博仁 &lt;<Buo.Ren.Lin@gmail.com>&gt;
 
