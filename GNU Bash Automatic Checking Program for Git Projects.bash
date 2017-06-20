@@ -72,7 +72,7 @@ init(){
 		git ls-files\
 			-z\
 			"*.bash"
-	)
+	); unset item
 
 	exit 0
 }; declare -fr init
