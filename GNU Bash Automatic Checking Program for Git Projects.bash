@@ -38,6 +38,8 @@ init(){
 		exit 1
 	fi
 
+	local check_result=UNKNOWN
+
 	printf\
 		"Checking all GNU Bash scripts in repository...\n"
 
@@ -61,12 +63,14 @@ init(){
 		# It is possible that `item` is a directory with .bash prefix, avoid them
 		if [ -f "${item}" ]; then
 			printf --\
-				"%s: %s\n"\
+				"%s: Checking %s...\n"\
 				"${RUNTIME_EXECUTABLE_NAME}"\
-				"Checking ${item}..."
-			shellcheck\
-				--shell=bash\
 				"${item}"
+			if ! shellcheck\
+				--shell=bash\
+				"${item}"; then
+				check_result='FAILED'
+			fi
 		fi
 	done < <(
 		git ls-files\
@@ -74,6 +78,13 @@ init(){
 			"*.bash"
 	); unset item
 
+	if [ "${check_result}" == "FAILED" ]; then
+		printf\
+			"%s: %s\n"\
+			"${RUNTIME_EXECUTABLE_NAME}"\
+			"Error: Script checking failed, please check your script."
+		exit 1
+	fi
 	exit 0
 }; declare -fr init
 
