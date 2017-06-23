@@ -52,10 +52,6 @@ init(){
 	)"; local -r worktree_dir
 	pushd "${worktree_dir}" >/dev/null
 
-# 	git ls-files\
-# 		-z\
-# 		"*.bash"\
-	# The following command will be dropped in favor with the above one after Travis CI environment contains ShellCheck >=0.4.5, which fixes the bug that triggers SC2148 even when `shell` directive is used
 	while IFS='' read -r -d '' item; do
 		# It is possible that `item` is a directory with .bash prefix, avoid them
 		if [ -f "${item}" ]; then
