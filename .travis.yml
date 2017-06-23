@@ -1,0 +1,32 @@
+# Travis CI Configuration
+# https://docs.travis-ci.com
+# This file is based on
+# TravisCI · koalaman/shellcheck Wiki
+# https://github.com/koalaman/shellcheck/wiki/TravisCI
+## Use container-based infrastructure for quicker build start-up
+sudo: false
+
+addons:
+  apt:
+    sources:
+    - debian-sid    # Grab shellcheck from the Debian repo (o_O)
+    - git-core
+    packages:
+    - shellcheck
+    - realpath      # Merged to GNU Coreutils in Ubuntu 16.04
+    - git           # Update Git due to missing `worktree` sub-command(git-core is not enough)
+
+## We only support Ubuntu 14.04 and newer
+dist: trusty
+
+language: markdown
+
+## EXPERIMENTAL
+## Customizing the Build - Travis CI
+## https://docs.travis-ci.com/user/customizing-the-build/#Git-Clone-Depth
+## > Please note that if you use a depth of 1 and have a queue of jobs, Travis CI won’t build commits that are in the queue when you push a new commit.
+git:
+  depth: 30
+
+script:
+- ./"GNU Bash Automatic Checking Program for Git Projects.bash"
