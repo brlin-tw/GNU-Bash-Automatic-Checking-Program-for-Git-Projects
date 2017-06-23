@@ -43,17 +43,14 @@ init(){
 	printf\
 		"Checking all GNU Bash scripts in repository...\n"
 
-	# Go up a level so we are in parent repository's worktree
-	pushd "${RUNTIME_EXECUTABLE_DIRECTORY}/.." >/dev/null
-
-	local parent_worktree; parent_worktree="$(
+	local worktree_dir; worktree_dir="$(
 		git worktree\
 			list\
 			--porcelain\
 			| grep worktree\
 			| cut -f 2- -d ' '
-	)"; local -r parent_worktree
-	pushd "${parent_worktree}" >/dev/null
+	)"; local -r worktree_dir
+	pushd "${worktree_dir}" >/dev/null
 
 # 	git ls-files\
 # 		-z\
