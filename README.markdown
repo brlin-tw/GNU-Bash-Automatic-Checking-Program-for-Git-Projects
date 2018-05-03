@@ -3,6 +3,14 @@ This is a program that checks all existing GNU Bash scripts for errors and poten
 
 <https://github.com/Lin-Buo-Ren/GNU-Bash-Automatic-Checking-Program-for-Git-Projects>
 
+## Deprecation Notice
+
+This project has been superseded by [pre-commit - A framework for managing and maintaining multi-language pre-commit hooks](https://pre-commit.com/), which is far more flexible and feature-rich than this project can provide.  It is recommended to use that instead.
+
+A sample pre-commit and Travis CI configuration has applied to this project for reference, checkout the `.pre-commit-config.yaml` and `.travis.yml` file for more info.
+
+To manually trigger a full project bash script checking, run `pre-commit run --all-files shellcheck` under the source tree in a terminal.
+
 ## 特色<br>Features
 * Only scripts in project will be checked, not scripts in submodules, that's their problem
 * Directory named with \*.bash will be omitted

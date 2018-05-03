@@ -25,6 +25,17 @@ addons:
     - realpath      # Merged to GNU Coreutils in Ubuntu 16.04
     - git           # Update Git due to missing `worktree` sub-command(git-core is not enough)
 
+install:
+- pip install --user pre-commit
+
 before_script:
+# Run pre-commit hooks on changed file at HEAD
+- git diff-tree -z --no-commit-id --name-only -r HEAD | xargs --null pre-commit run --files
+
+# Run shellcheck hook on all scripts in project
+- pre-commit run --all-files shellcheck
+
 - ./"GNU Bash Automatic Checking Program for Git Projects.bash"
 
+cache:
+  pip: true
